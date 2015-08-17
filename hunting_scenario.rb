@@ -25,19 +25,29 @@ $duck = <<-DUCK
 ############~~---_____|_____---~~############\n
 DUCK
 
-def instructions
-  puts 'Your goal is to shoot the duck before '\
-       "Ogden Nash's poem convinces you to do otherwise.\n"\
-       '--Ready? Press enter to start the poem.'
-end
-
 def clear_screen
   puts "\e[H\e[2J"
 end
 
+def instructions
+  sleep 0.5
+  puts 'Your goal is to shoot the duck before '\
+       "Ogden Nash's poem convinces you that it's a silly thing to do."
+  sleep 1.25
+  puts '--Ready? Press enter to start the poem.'
+end
+
+def greet_user
+  "Hello, #{ENV["USER"].capitalize}.\n\n".chars.each do |l|
+    print l
+    sleep 0.1
+  end
+  sleep 0.2
+end
+
 def welcome
   clear_screen
-
+  greet_user
   instructions
   gets
 end
@@ -53,9 +63,14 @@ end
 
 def reflect_and_exit
   clear_screen
+  adieu
+end
+
+def adieu
   puts 'Well.'
-  sleep 0.5
+  sleep 0.75
   print 'You got it.'
   sleep 1
   print " Good job.\n\n"
+  sleep 1
 end
